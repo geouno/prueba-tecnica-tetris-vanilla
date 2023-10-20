@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite + TS</title>
+	</head>
+	<body>
+		<div id="game-wrapper-div">
+			<div id="stats-div">
+				<h2 style="text-align: center;">Score: <span id="score-span">0</span></h2>
+				<h3 style="text-align: center;">Frame rate: <span id="frame-rate-span">0</span></h3>
+				<button id="kill">kill</button>
+			</div>
+			<canvas id="tetris-canvas"></canvas>
+			<div id="game-over-div">
+				<span id="game-over-span">rest in rip</span>
+				<button id="restart-button">Restart Game</button>
+			</div>
+		</div>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>
