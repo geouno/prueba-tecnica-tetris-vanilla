@@ -9,6 +9,7 @@ const CANVAS_HEIGHT = BOARD_HEIGHT * BLOCK_SIZE, CANVAS_WIDTH = BOARD_WIDTH * BL
 canvas.height = CANVAS_HEIGHT;
 canvas.width = CANVAS_WIDTH;
 context.scale(BLOCK_SIZE, BLOCK_SIZE);
+canvas.style.height = `${CANVAS_HEIGHT}px`;
 
 const DIM_ALPHA: number = 0.625;
 let GAME_OVER: boolean = false;
