@@ -10,16 +10,16 @@ canvas.height = CANVAS_HEIGHT;
 canvas.width = CANVAS_WIDTH;
 context.scale(BLOCK_SIZE, BLOCK_SIZE);
 
-const DIM_ALPHA = 0.625;
+const DIM_ALPHA: number = 0.625;
 let GAME_OVER: boolean = false;
 document.getElementById("game-over-div")!.style.display = "none";
 document.getElementById("kill")!.addEventListener("click", function() {
 	GAME_OVER = true;
 });
 
-let frame_count = 0;
-let frame_count_array = Array(2000).fill(0);
-let score = 0;
+let frame_count: number = 0;
+let frame_count_array: number[] = Array(2000).fill(0);
+let score: number = 0;
 
 const colors = [
 	"white",
@@ -301,6 +301,11 @@ function render_piece(piece: TetrisPiece): void {
 	}
 }
 
+const stats_div = document.getElementById("stats-div")!;
+const score_span = document.getElementById("score-span")!;
+const game_over_div = document.getElementById("game-over-div")!;
+const frame_rate_span = document.getElementById("frame-rate-span")!;
+
 function render() {
 	context.fillStyle = "#282828";
 	context.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
@@ -326,19 +331,21 @@ function render() {
 		context.fillStyle = `rgba(0, 0, 0, ${DIM_ALPHA})`;
 		context.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
-		document.getElementById("game-over-div")!.style.display = "flex";
+		game_over_div.style.display = "flex";
 		restart_button.focus();
 	}
 
-	document.querySelector("#score-span")!.innerHTML = `${score}`;
+	score_span.innerHTML = `${score}`;
 
-	const millis = performance.now();
-	document.querySelector("#frame-rate-span")!.innerHTML = `
+	const millis: number = Math.floor(performance.now());
+	frame_rate_span.innerHTML = `
 		${(++frame_count - frame_count_array[(millis + 1000) % 2000])}
 	`;
 
 	for(let i = 0; i < 30; i++)
 		frame_count_array[(millis + i) % 2000] = frame_count;
+
+	document.documentElement.style.setProperty("--stats-div-height", `${stats_div.offsetHeight}px`);
 }
 
 function update() {

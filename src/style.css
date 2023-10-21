@@ -12,6 +12,9 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	--game-wrapper-div-height: 80vh;
+	--stats-div-height: 0px;
 }
 
 a {
@@ -32,10 +35,26 @@ body {
 }
 
 #game-wrapper-div {
+	display: flex;
+	flex-direction: column;
 	position: relative;
+	height: var(--game-wrapper-div-height);
+	/* max-height: var(--game-wrapper-div-height); */
+	min-width: 400px;
+	width: 50vw;
+}
+
+#canvas-wrapper-div {
+	display: flex;
+	max-height: calc(var(--game-wrapper-div-height) - var(--stats-div-height));
+	flex-grow: 1;
+	flex-shrink: 1;
 }
 
 #tetris-canvas {
+	margin: 0 auto;
+	max-height: 100%;
+	height: 960px;
 	outline: 2px solid teal;
 }
 
